@@ -63,7 +63,7 @@ main(void) {
   unsigned int total_bytes = 0;
   unsigned int expected_start = 0;
 
-  while ((n = rabin_update(&ctx, buf + ctx.pos, sizeof(buf) - ctx.pos)) >= 0) {
+  while ((n = rabin_update(&ctx, buf + ctx.pos, sizeof(buf) - ctx.pos)) > 0) {
     printf(
       "  chunk %2d: start=%u length=%u fp=0x%llx (consumed %d)\n",
       chunks,

@@ -196,7 +196,7 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len) {
     }
   }
 
-  return -1;
+  return 0;
 }
 
 rabin_chunk_t *
