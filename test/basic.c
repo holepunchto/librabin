@@ -82,19 +82,19 @@ main(void) {
   }
 
   // Finalize to get trailing data.
-  rabin_chunk_t *tail = rabin_final(&ctx);
+  int tail = rabin_final(&ctx);
 
   if (tail) {
     printf(
       "  tail    : start=%u length=%u fp=0x%llx\n",
-      tail->start,
-      tail->length,
-      (unsigned long long) tail->cut_fingerprint
+      ctx.last_chunk.start,
+      ctx.last_chunk.length,
+      (unsigned long long) ctx.last_chunk.cut_fingerprint
     );
 
-    assert(tail->start == expected_start);
+    assert(ctx.last_chunk.start == expected_start);
 
-    total_bytes += tail->length;
+    total_bytes += ctx.last_chunk.length;
     chunks++;
   }
 

@@ -89,7 +89,7 @@ rabin_reset(rabin_t *h);
  * Scan forward in `buf` (of length `len`) for the next chunk boundary.
  *
  * Returns the number of bytes consumed from `buf` when a boundary is found, or
- * -1 if no boundary was found before the end of the buffer.
+ * 0 if no boundary was found before the end of the buffer.
  *
  * When a boundary is found, `h->last_chunk` is populated with the chunk's start
  * offset, length, and fingerprint at the cut point.
@@ -99,11 +99,8 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len);
 
 /**
  * Obtain the trailing bytes that did not form a complete chunk.
- *
- * Returns a pointer to `h->last_chunk` (populated with the remainder), or
- * `NULL` if there are no remaining bytes.
  */
-rabin_chunk_t *
+int
 rabin_final(rabin_t *h);
 
 #ifdef __cplusplus

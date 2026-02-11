@@ -199,17 +199,17 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len) {
   return 0;
 }
 
-rabin_chunk_t *
+int
 rabin_final(rabin_t *h) {
+  h->last_chunk.length = h->count;
+
   if (h->count == 0) {
     h->last_chunk.start = 0;
-    h->last_chunk.length = 0;
     h->last_chunk.cut_fingerprint = 0;
-    return NULL;
+  } else {
+    h->last_chunk.start = h->start;
+    h->last_chunk.cut_fingerprint = h->digest;
   }
 
-  h->last_chunk.start = h->start;
-  h->last_chunk.length = h->count;
-  h->last_chunk.cut_fingerprint = h->digest;
-  return &h->last_chunk;
+  return h->count;
 }
