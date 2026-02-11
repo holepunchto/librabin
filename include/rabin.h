@@ -42,7 +42,7 @@ typedef struct rabin_chunk_s rabin_chunk_t;
 struct rabin_chunk_s {
   unsigned int start;
   unsigned int length;
-  uint64_t cut_fingerprint;
+  uint64_t fingerprint;
 };
 
 // Rabin fingerprint state.

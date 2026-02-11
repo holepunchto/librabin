@@ -184,7 +184,7 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len) {
     if ((h->count >= h->chunk_min && ((h->digest & h->fingerprint_mask) == 0)) || h->count >= h->chunk_max) {
       h->last_chunk.start = h->start;
       h->last_chunk.length = h->count;
-      h->last_chunk.cut_fingerprint = h->digest;
+      h->last_chunk.fingerprint = h->digest;
 
       // Preserve position, then reset rolling state.
       unsigned int pos = h->pos;
@@ -205,10 +205,10 @@ rabin_final(rabin_t *h) {
 
   if (h->count == 0) {
     h->last_chunk.start = 0;
-    h->last_chunk.cut_fingerprint = 0;
+    h->last_chunk.fingerprint = 0;
   } else {
     h->last_chunk.start = h->start;
-    h->last_chunk.cut_fingerprint = h->digest;
+    h->last_chunk.fingerprint = h->digest;
   }
 
   return h->count;

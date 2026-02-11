@@ -69,7 +69,7 @@ main(void) {
       chunks,
       ctx.last_chunk.start,
       ctx.last_chunk.length,
-      (unsigned long long) ctx.last_chunk.cut_fingerprint,
+      (unsigned long long) ctx.last_chunk.fingerprint,
       n
     );
 
@@ -89,7 +89,7 @@ main(void) {
       "  tail    : start=%u length=%u fp=0x%llx\n",
       ctx.last_chunk.start,
       ctx.last_chunk.length,
-      (unsigned long long) ctx.last_chunk.cut_fingerprint
+      (unsigned long long) ctx.last_chunk.fingerprint
     );
 
     assert(ctx.last_chunk.start == expected_start);
