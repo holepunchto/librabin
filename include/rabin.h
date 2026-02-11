@@ -104,7 +104,7 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len);
  * `NULL` if there are no remaining bytes.
  */
 rabin_chunk_t *
-rabin_finalize(rabin_t *h);
+rabin_final(rabin_t *h);
 
 #ifdef __cplusplus
 }

@@ -200,7 +200,7 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len) {
 }
 
 rabin_chunk_t *
-rabin_finalize(rabin_t *h) {
+rabin_final(rabin_t *h) {
   if (h->count == 0) {
     h->last_chunk.start = 0;
     h->last_chunk.length = 0;

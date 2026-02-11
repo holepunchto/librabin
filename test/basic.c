@@ -82,7 +82,7 @@ main(void) {
   }
 
   // Finalize to get trailing data.
-  rabin_chunk_t *tail = rabin_finalize(&ctx);
+  rabin_chunk_t *tail = rabin_final(&ctx);
 
   if (tail) {
     printf(
