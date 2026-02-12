@@ -172,7 +172,7 @@ rabin_init(rabin_t *h) {
 }
 
 int
-rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len) {
+rabin_push(rabin_t *h, const uint8_t *buf, unsigned int len) {
   for (unsigned int i = 0; i < len; i++) {
     uint8_t b = *buf++;
 
@@ -200,7 +200,7 @@ rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len) {
 }
 
 int
-rabin_final(rabin_t *h) {
+rabin_end(rabin_t *h) {
   h->last_chunk.length = h->count;
 
   if (h->count == 0) {

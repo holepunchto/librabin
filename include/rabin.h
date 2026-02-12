@@ -95,13 +95,13 @@ rabin_reset(rabin_t *h);
  * offset, length, and fingerprint at the cut point.
  */
 int
-rabin_update(rabin_t *h, const uint8_t *buf, unsigned int len);
+rabin_push(rabin_t *h, const uint8_t *buf, unsigned int len);
 
 /**
  * Obtain the trailing bytes that did not form a complete chunk.
  */
 int
-rabin_final(rabin_t *h);
+rabin_end(rabin_t *h);
 
 #ifdef __cplusplus
 }
