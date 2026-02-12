@@ -182,7 +182,7 @@ rabin_push(rabin_t *h, const uint8_t *buf, unsigned int len) {
     h->pos++;
 
     if ((h->count >= h->chunk_min && ((h->digest & h->fingerprint_mask) == 0)) || h->count >= h->chunk_max) {
-      h->last_chunk.start = h->start;
+      h->last_chunk.offset = h->start;
       h->last_chunk.length = h->count;
       h->last_chunk.fingerprint = h->digest;
 
@@ -204,10 +204,10 @@ rabin_end(rabin_t *h) {
   h->last_chunk.length = h->count;
 
   if (h->count == 0) {
-    h->last_chunk.start = 0;
+    h->last_chunk.offset = 0;
     h->last_chunk.fingerprint = 0;
   } else {
-    h->last_chunk.start = h->start;
+    h->last_chunk.offset = h->start;
     h->last_chunk.fingerprint = h->digest;
   }
 

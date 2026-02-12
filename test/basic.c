@@ -61,22 +61,22 @@ main(void) {
 
   int n, chunks = 0;
   unsigned int total_bytes = 0;
-  unsigned int expected_start = 0;
+  unsigned int expected_offset = 0;
 
   while ((n = rabin_push(&ctx, buf + ctx.pos, sizeof(buf) - ctx.pos)) > 0) {
     printf(
-      "  chunk %2d: start=%u length=%u fp=0x%llx (consumed %d)\n",
+      "  chunk %2d: offset=%u length=%u fp=0x%llx (consumed %d)\n",
       chunks,
-      ctx.last_chunk.start,
+      ctx.last_chunk.offset,
       ctx.last_chunk.length,
       (unsigned long long) ctx.last_chunk.fingerprint,
       n
     );
 
     // Verify contiguous coverage.
-    assert(ctx.last_chunk.start == expected_start);
+    assert(ctx.last_chunk.offset == expected_offset);
 
-    expected_start = ctx.last_chunk.start + ctx.last_chunk.length;
+    expected_offset = ctx.last_chunk.offset + ctx.last_chunk.length;
     total_bytes += ctx.last_chunk.length;
     chunks++;
   }
@@ -86,13 +86,13 @@ main(void) {
 
   if (tail) {
     printf(
-      "  tail    : start=%u length=%u fp=0x%llx\n",
-      ctx.last_chunk.start,
+      "  tail    : offset=%u length=%u fp=0x%llx\n",
+      ctx.last_chunk.offset,
       ctx.last_chunk.length,
       (unsigned long long) ctx.last_chunk.fingerprint
     );
 
-    assert(ctx.last_chunk.start == expected_start);
+    assert(ctx.last_chunk.offset == expected_offset);
 
     total_bytes += ctx.last_chunk.length;
     chunks++;

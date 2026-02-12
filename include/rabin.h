@@ -40,7 +40,7 @@ typedef struct rabin_chunk_s rabin_chunk_t;
 
 // Chunk boundary information.
 struct rabin_chunk_s {
-  unsigned int start;
+  unsigned int offset;
   unsigned int length;
   uint64_t fingerprint;
 };
